@@ -24,10 +24,11 @@ request = portal.context.makeRequestRSpec()
 if params.n < 1 or params.n > 4:
     portal.context.reportError( portal.ParameterError( "You must choose at least 1 and no more than 4 VMs." ) )
 
+link = request.LAN("lan")
 
 for i in range( params.n ):
 
-    node = request.XenVM("node-" + (str i+1))
+    node = request.XenVM("node-" + str( i + 1))
     node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//CENTOS7-64-STD" 
     iface = node.addInterface("if")
     
@@ -37,8 +38,10 @@ for i in range( params.n ):
     
     # Create a XenVM and add it to the RSpec.
     iface.component_id = "eth1"
-    iface.addAddress(rspec.IPv4Address("192.168.1." + (str i+1), "255.255.255.0"))
+    iface.addAddress(rspec.IPv4Address("192.168.1." + str( i + 1), "255.255.255.0"))
     
+    link.addInterface(iface)
+
 
 # Print the RSpec to the enclosing page.
 portal.context.printRequestRSpec()
