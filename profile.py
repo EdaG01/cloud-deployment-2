@@ -32,10 +32,9 @@ for i in range( params.n ):
     node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//CENTOS7-64-STD" 
     iface = node.addInterface("if")
     
-    node.routable_control_ip = True 
     if( i + 1 == 1):
-        iface = node.addInterface("if")
-    
+        node.routable_control_ip = True 
+ 
     # Create a XenVM and add it to the RSpec.
     iface.component_id = "eth1"
     iface.addAddress(rspec.IPv4Address("192.168.1." + str( i + 1), "255.255.255.0"))
