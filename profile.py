@@ -24,7 +24,7 @@ request = portal.context.makeRequestRSpec()
 if params.n < 1 or params.n > 4:
     portal.context.reportError( portal.ParameterError( "You must choose at least 1 and no more than 4 VMs." ) )
 
-iface = node1.addInterface("if")
+iface = node.addInterface("if")
 
 for i in range( params.n ):
 
