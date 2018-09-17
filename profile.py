@@ -27,7 +27,7 @@ if params.n < 1 or params.n > 4:
 
 for i in range( params.n ):
 
-    node = request.XenVM("node-" + (i+1))
+    node = request.XenVM("node-" + (str i+1))
     node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//CENTOS7-64-STD" 
     iface = node.addInterface("if")
     
@@ -37,7 +37,7 @@ for i in range( params.n ):
     
     # Create a XenVM and add it to the RSpec.
     iface.component_id = "eth1"
-    iface.addAddress(rspec.IPv4Address("192.168.1." + (i+1), "255.255.255.0"))
+    iface.addAddress(rspec.IPv4Address("192.168.1." + (str i+1), "255.255.255.0"))
     
 
 # Print the RSpec to the enclosing page.
