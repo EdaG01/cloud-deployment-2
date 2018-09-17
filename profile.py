@@ -24,12 +24,12 @@ request = portal.context.makeRequestRSpec()
 if params.n < 1 or params.n > 4:
     portal.context.reportError( portal.ParameterError( "You must choose at least 1 and no more than 4 VMs." ) )
 
-iface = node.addInterface("if")
 
 for i in range( params.n ):
 
     node = request.XenVM("node-" + (str + (i+1)))
     node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//CENTOS7-64-STD" 
+    iface = node.addInterface("if")
     
     node.routable_control_ip = True 
     if( i + 1 == 1):
